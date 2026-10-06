@@ -9,12 +9,11 @@ import { useFetchOmdbCategories } from './hooks/useFetchOmdbCategories.js';
 import Search from './components/Search.jsx';
 import { auth } from './services/firebase';
 import {
-  selectUserName,
   setSignOutState,
   setUserLoginDetails,
 } from './features/user/UserSlice.jsx';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { lazy, Suspense, useEffect } from 'react';
 
 // Lazy load the test component so it is split into a separate bundle
@@ -26,7 +25,6 @@ const isDev = process.env.NODE_ENV === 'development' || import.meta.env?.DEV;
 function App() {
   // Executes the hook automatically on app load
   useFetchOmdbCategories();
-  const userName = useSelector(selectUserName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectRecommended } from '../features/movie/MovieSlice';
-import MovieCard from '../components/MovieCard';
 import imgBackground from '../assets/images/home-background.png';
 
 export default function Test() {

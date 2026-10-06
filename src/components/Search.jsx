@@ -85,7 +85,17 @@ export default function Search() {
               <span>YEAR</span>
               {sortBy === 'year' && (
                 <DirectionBadge>
-                  {isAscending ? '▲ Oldest' : '▼ Newest'}
+                  {isAscending ? (
+                    <>
+                      <span className="mobile-show">▲</span>
+                      <span className="mobile-hide">Oldest</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="mobile-show">▼</span>
+                      <span className="mobile-hide">Newest</span>
+                    </>
+                  )}
                 </DirectionBadge>
               )}
             </CardContent>
@@ -99,7 +109,18 @@ export default function Search() {
               <span>GENRE</span>
               {sortBy === 'genre' && (
                 <DirectionBadge>
-                  {isAscending ? '▲ A-Z' : '▼ Z-A'}
+                  {/* {isAscending ? '▲ A-Z' : '▼ Z-A'} */}
+                  {isAscending ? (
+                    <>
+                      <span className="mobile-show">▲</span>
+                      <span className="mobile-hide">A-Z</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="mobile-show">▼</span>
+                      <span className="mobile-hide">Z-A</span>
+                    </>
+                  )}
                 </DirectionBadge>
               )}
             </CardContent>
@@ -113,7 +134,18 @@ export default function Search() {
               <span>RATING</span>
               {sortBy === 'rating' && (
                 <DirectionBadge>
-                  {isAscending ? '▲ Lowest' : '▼ Highest'}
+                  {/* {isAscending ? '▲ Lowest' : '▼ Highest'} */}
+                  {isAscending ? (
+                    <>
+                      <span className="mobile-show">▲</span>
+                      <span className="mobile-hide">Lowest</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="mobile-show">▼</span>
+                      <span className="mobile-hide">Highest</span>
+                    </>
+                  )}
                 </DirectionBadge>
               )}
             </CardContent>
@@ -189,6 +221,19 @@ const StickyControls = styled.div`
     props.$scrolled
       ? '1px solid rgba(249, 249, 249, 0.1)'
       : '1px solid transparent'};
+
+  /* Relative ON MOBILE SCREENS */
+  @media (max-width: 768px) {
+    position: relative;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
 `;
 
 const SearchForm = styled.form`
@@ -230,17 +275,26 @@ const SearchButton = styled.button`
 
 const SorterGrid = styled.div`
   display: grid;
-  grid-gap: 25px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-gap: 15px;
+  grid-template-columns: repeat(4, minmax(0, 220px));
 
   @media (max-width: 768px) {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 200px));
   }
 `;
 
-const SorterCard = styled.div`
-  height: 60px;
+const DirectionBadge = styled.div`
+  font-size: 11px;
+  background: #00d2ff;
+  color: #000;
+  padding: 3px 8px;
   border-radius: 10px;
+  font-weight: bold;
+`;
+
+const SorterCard = styled.div`
+  height: 40px;
+  border-radius: 5px;
   box-shadow:
     rgb(0 0 0 / 69%) 0px 26px 30px -10px,
     rgb(0 0 0 / 73%) 0px 16px 10px -10px;
@@ -249,8 +303,8 @@ const SorterCard = styled.div`
   transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
   border: ${(props) =>
     props.$active
-      ? '3px solid rgba(249, 249, 249, 0.8)'
-      : '3px solid rgba(249, 249, 249, 0.1)'};
+      ? '1px solid rgba(249, 249, 249, 0.7)'
+      : '1px solid rgba(249, 249, 249, 0.1)'};
   background: linear-gradient(
     145deg,
     rgba(30, 34, 42, 0.7),
@@ -260,6 +314,23 @@ const SorterCard = styled.div`
   &:hover {
     transform: scale(1.02);
     border-color: rgba(249, 249, 249, 0.8);
+  }
+
+  /* Hide specific text labels on iPhone 16 / small mobile screens */
+  @media (max-width: 480px) {
+    .mobile-hide {
+      display: none;
+    }
+
+    .mobile-show {
+      color: #00d2ff !important;
+    }
+
+    /* Make sure the badge centers nicely when text is hidden */
+    ${DirectionBadge} {
+      padding: 0;
+      background: transparent;
+    }
   }
 `;
 
@@ -271,20 +342,11 @@ const CardContent = styled.div`
   gap: 12px;
 
   span {
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: normal;
     letter-spacing: 2px;
     color: #f9f9f9;
   }
-`;
-
-const DirectionBadge = styled.div`
-  font-size: 11px;
-  background: #00d2ff;
-  color: #000;
-  padding: 3px 8px;
-  border-radius: 10px;
-  font-weight: bold;
 `;
 
 const ResultsContainer = styled.div`

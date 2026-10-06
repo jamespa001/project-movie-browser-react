@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Images
 import imgLogo from '../assets/images/logo.svg';
@@ -99,15 +99,10 @@ export default function Header() {
           <DrawerItem onClick={() => handleNavClick('/search')}>
             SEARCH
           </DrawerItem>
-          {!userName ? (
-            <DrawerItem onClick={handleAuth}>LOG IN</DrawerItem>
-          ) : (
-            <>
-              <DrawerItem onClick={() => handleNavClick('/memberExclusive')}>
-                MEMBER EXCLUSIVE
-              </DrawerItem>
-              <DrawerItem onClick={handleAuth}>SIGN OUT</DrawerItem>
-            </>
+          {userName && (
+            <DrawerItem onClick={() => handleNavClick('/memberExclusive')}>
+              MEMBER EXCLUSIVE
+            </DrawerItem>
           )}
         </MobileDrawer>
 
@@ -115,7 +110,7 @@ export default function Header() {
           <Login onClick={handleAuth}>Log in</Login>
         ) : (
           <SignOut>
-            {userPhoto && <UserImg src={userPhoto} alt="{userName}" />}
+            {userPhoto && <UserImg src={userPhoto} alt={userName} />}
             <DropDown>
               <span onClick={handleAuth}>Sign out</span>
             </DropDown>

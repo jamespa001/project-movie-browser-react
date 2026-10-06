@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import React from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectOriginal } from '../features/movie/MovieSlice';
 import MovieCard from './MovieCard';

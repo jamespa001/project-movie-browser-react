@@ -63,19 +63,19 @@ export default function Detail() {
           </MovieTitle>
 
           <Controls>
-            <Player>
+            <Player disabled={true}>
               <img src={imgPlayIconBlack} alt="Play" />
               <span>Play</span>
             </Player>
-            <Trailer>
+            <Trailer disabled={true}>
               <img src={imgPlayIconWhite} alt="Trailer" />
               <span>Trailer</span>
             </Trailer>
-            <AddList>
+            <AddList disabled={true}>
               <span></span>
               <span></span>
             </AddList>
-            <GroupWatch>
+            <GroupWatch disabled={true}>
               <div>
                 <img src={imgGroupIcon} alt="GroupWatch" />
               </div>
@@ -235,6 +235,12 @@ const Player = styled.button`
     background: rgb(198, 198, 198);
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background: rgb(200, 200, 200);
+  }
+
   @media (max-width: 768px) {
     height: 45px;
     padding: 0px 14px;
@@ -251,13 +257,20 @@ const Trailer = styled(Player)`
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgb(249, 249, 249);
   color: rgb(249, 249, 249);
+  cursor: pointer;
 
   &:hover {
     background: rgba(249, 249, 249, 0.2);
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background: rgb(200, 200, 200);
+  }
 `;
 
-const AddList = styled.div`
+const AddList = styled.button`
   margin-right: 16px;
   height: 44px;
   width: 44px;
@@ -267,12 +280,8 @@ const AddList = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 50%;
   border: 2px solid white;
-  cursor: pointer;
   transition: all 0.2s ease;
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
+  cursor: pointer;
 
   span {
     background-color: rgb(249, 249, 249);
@@ -290,27 +299,49 @@ const AddList = styled.div`
       width: 2px;
     }
   }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
 `;
 
-const GroupWatch = styled.div`
+const GroupWatch = styled.button`
   height: 44px;
   width: 44px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   background: white;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 
   div {
     height: 40px;
     width: 40px;
     background: rgb(0, 0, 0);
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     img {
       width: 100%;
     }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background: rgb(200, 200, 200);
   }
 `;
 

@@ -100,6 +100,7 @@ export default function MemberExclusive() {
                   <ButtonGroup>
                     <PlayButton
                       onClick={() => navigate(`/detail/${heroMovie.imdbID}`)}
+                      disabled={true}
                     >
                       <img src="/images/play-icon-black.png" alt="" />
                       <span>WATCH NOW</span>
@@ -288,6 +289,12 @@ const PlayButton = styled.button`
 
   &:hover {
     background: #c6c6c6;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background: rgb(200, 200, 200);
   }
 
   img {
