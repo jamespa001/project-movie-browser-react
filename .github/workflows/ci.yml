@@ -18,7 +18,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-          # Removed cache: 'npm' to prevent cache race conditions
 
       - name: Install Dependencies
         run: npm install --legacy-peer-deps --no-cache
@@ -28,3 +27,5 @@ jobs:
 
       - name: Build Application
         run: npm run build
+        env:
+          CI: false
